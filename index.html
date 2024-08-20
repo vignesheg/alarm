@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+            https://cordova.apache.org/docs/en/latest/
+        Some notes:
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Alarm clock</title>
+        <style>
+            body {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                font-family: 'Arial', sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color: #34495e;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+                width: 350px;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            h1 {
+                color: #e74c3c;
+                font-size: 24px;
+                margin: 0;
+            }
+            #current-time {
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            .selectors-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+            }
+            .selectors-row select {
+                flex: 1;
+                margin-right: 10px;
+                padding: 10px;
+                background-color: #7f8c8d;
+                color: #ecf0f1;
+                border: none;
+                border-radius: 5px;
+            }
+            .selectors-row select:last-child {
+                margin-right: 0;
+            }
+            button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                background-color: #e74c3c;
+                color: #ecf0f1;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #c0392b;
+            }
+            #alarm-status {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            h2 {
+                color: #3498db;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                background-color: #2ecc71;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            li button {
+                background-color: #e74c3c;
+                margin-left: 10px;
+                padding: 5px 10px;
+                font-size: 14px;
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Enhanced Alarm Clock</h1>
+                <p id="current-time"></p>
+            </div>
+    
+            <div class="alarm-setter">
+                <label for="alarm-hours">Set Alarm Time:</label>
+                <div class="selectors-row">
+                    <select id="alarm-hours"></select>
+                    <select id="alarm-minutes"></select>
+                    <select id="alarm-period">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+                <button id="set-alarm-btn">Set Alarm</button>
+                <p id="alarm-status"></p>
+            </div>
+    
+            <h2>Saved Alarms:</h2>
+            <ul id="alarms-list"></ul>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <script src="cordova.js"></script>
+        <script type="module" src="js/index.js"></script>
+    </body>
+</html>
